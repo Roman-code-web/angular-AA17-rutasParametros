@@ -1,1 +1,30 @@
-<p>tabla works!</p>
+<div class="container py-5">
+    <div class="container my-5">
+        <table class="table">
+            <thead class="bg-warning">
+              <tr>
+                <th scope="col">N°</th>
+                <th scope="col">ID</th>
+                <th scope="col">DESCRIPCION</th>
+                <th scope="col">PRECIO DE COMPRA</th>
+                <th scope="col">PRECIO DE VENTA</th>
+                <th scope="col">GANANCIA</th>
+                <th scope="col">EXISTENCIA</th>
+                <th scope="col">EDITAR</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let producto of dataservices.listaProductos, index as i">
+                <th >{{i+1}}</th>
+                <td>{{producto.id}}</td>
+                <td>{{producto.descripcion}}</td>
+                <td>{{producto.preciocompra}}</td>
+                <td>{{producto.precioventa}}</td>
+                <td>{{producto.ganancia}}</td>
+                <td>{{producto.existencia}}</td>
+                <td><button  class="btn btn-info" (click)="getProductos(producto.id)" ><i class="fa-solid fa-pen-to-square"></i></button></td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</div>
