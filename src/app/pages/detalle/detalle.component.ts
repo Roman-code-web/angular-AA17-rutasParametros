@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DataTableService } from 'src/app/servicios/data-table.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-detalle',
@@ -29,8 +30,26 @@ export class DetalleComponent implements OnInit{
   }
   //eliminar
   eliminarProducto(codigo:string){
-    this.dataservices.listaProductos=this.dataservices.listaProductos.filter(elemets=> elemets.codigo!=codigo);
-    this.router.navigate(['/']);
+    Swal.fire({
+      title: 'Estas seguro de eliminar este producto?',
+      text: "No prodra revertir esta eliminacion",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, porfavor!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Eliminado!',
+          'Registro eliminado',
+          'success'
+        )
+        this.dataservices.listaProductos=this.dataservices.listaProductos.filter(elemets=> elemets.codigo!=codigo);
+        this.router.navigate(['/']);
+      }
+    })
+    
   }
   /*en proceso
   actuzalizarDatos(codigo:string){

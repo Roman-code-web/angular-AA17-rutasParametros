@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataTableService } from 'src/app/servicios/data-table.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-tabla',
@@ -18,7 +19,25 @@ export class TablaComponent implements OnInit{
   }
 
   eliminarProducto(codigo:string){
-    this.dataservices.listaProductos=this.dataservices.listaProductos.filter(elemts=> elemts.codigo!=codigo);
+    Swal.fire({
+      title: 'Estas seguro de eliminar este producto?',
+      text: "No prodra revertir esta eliminacion",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, porfavor!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Eliminado!',
+          'Registro eliminado',
+          'success'
+        )
+        this.dataservices.listaProductos=this.dataservices.listaProductos.filter(elemts=> elemts.codigo!=codigo);
+      }
+    })
+   
   }
   ngOnInit(): void {
     this.dataservices.hidden=true;
