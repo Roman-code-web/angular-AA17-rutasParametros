@@ -1,6 +1,6 @@
 <div class="container py-5">
     <h2 class="text-center fs-1">{{titulodetalle}} : {{productoEncontrado[0].codigo}}</h2>
-    <div class="container my-5">
+    <div class="container my-5 px-0 overflow-auto">
         <table class="table">
             <thead class="bg-primary text-center">
                 <tr>
@@ -27,13 +27,12 @@
                 <td>{{producto.existencia}}</td>
                 <td><button class="btn btn-danger" (click)="eliminarProducto(producto.codigo)" ><i class="fa-solid fa-trash-can"></i></button></td>
                 <!---ACTUCALIZAR FALTA UN PASO- (click)="actuzalizarDatos(producto.codigo)"  --->
-                
               </tr>
             </tbody>
           </table>
           
+    </div>
           <div class="container">
             <a  class="btn btn-primary" routerLink="/"> Ver Registros completos</a>
           </div>
-    </div>
 </div>
