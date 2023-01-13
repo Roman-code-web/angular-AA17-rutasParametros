@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DataTableService } from 'src/app/servicios/data-table.service';
 
 @Component({
   selector: 'app-header',
@@ -7,4 +8,5 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
 
+  constructor(public dataservices:DataTableService){}
 }

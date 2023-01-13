@@ -4,9 +4,11 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class DataTableService {
+  hidden=true;
   listaProductos=[
     {
-      id:'PRO001',
+      id:'1',
+      codigo:'PRO001',
       descripcion:'Galletas chokis',
       preciocompra:'10.00',
       precioventa:'15.00',
@@ -14,7 +16,8 @@ export class DataTableService {
       existencia:'100.00'
     },
     {
-      id:'PRO002',
+      id:'2',
+      codigo:'PRO002',
       descripcion:'A gogo',
       preciocompra:'10.00',
       precioventa:'15.00',
@@ -22,7 +25,8 @@ export class DataTableService {
       existencia:'100.00'
     },
     {
-      id:'PRO003',
+      id:'3',
+      codigo:'PRO003',
       descripcion:'gaseosa inka kola',
       preciocompra:'10.00',
       precioventa:'15.00',
@@ -30,7 +34,8 @@ export class DataTableService {
       existencia:'100.00'
     },
     {
-      id:'PRO004',
+      id:'4',
+      codigo:'PRO004',
       descripcion:'Mentitas',
       preciocompra:'10.00',
       precioventa:'15.00',
@@ -38,7 +43,8 @@ export class DataTableService {
       existencia:'100.00'
     },
     {
-      id:'PRO005',
+      id:'5',
+      codigo:'PRO005',
       descripcion:'Alfajores',
       preciocompra:'10.00',
       precioventa:'15.00',

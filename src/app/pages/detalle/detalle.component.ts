@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DataTableService } from 'src/app/servicios/data-table.service';
 
 @Component({
@@ -8,19 +8,38 @@ import { DataTableService } from 'src/app/servicios/data-table.service';
   styleUrls: ['./detalle.component.css']
 })
 export class DetalleComponent implements OnInit{
-  //1.variable
-  id!:string;
-  productoEncontrado=[{id:'',descripcion:'',preciocompra:'',precioventa:'',ganancia:'',existencia:''}];
+  //1. Declaro variable
+  titulodetalle="Detalle Producto";
+  codigo!:string;
+  productoEncontrado=[{id:'',codigo:'',descripcion:'',preciocompra:'',precioventa:'',ganancia:'',existencia:''}];
+  indice!:number;
   //2.construtor
-  constructor(public dataservices:DataTableService, private route: ActivatedRoute){}
+  constructor(public dataservices:DataTableService, private route: ActivatedRoute, private router:Router){}
+
   //3.implementamos el onInit para obtener el id del url ni bien inicia el componente
   ngOnInit(): void {
-    this.id=String (this.route.snapshot.paramMap.get('id'));
-    this.cargarDatos(this.id);
+    this.dataservices.hidden=false;
+    this.codigo=String (this.route.snapshot.paramMap.get('id'));
+    this.cargarDatos(this.codigo);
   }
-  //4. funcion que retorne los valores de ese id
-  cargarDatos(id:string){
-    this.productoEncontrado= this.dataservices.listaProductos.filter((element) => element.id === id);
-    console.log(this.productoEncontrado);
+
+  //4. funcion cargar el resgistro donde codigo===codigo
+  cargarDatos(codigo:string){
+    this.productoEncontrado= this.dataservices.listaProductos.filter((element) => element.codigo === codigo);
   }
+  //eliminar
+  eliminarProducto(codigo:string){
+    this.dataservices.listaProductos=this.dataservices.listaProductos.filter(elemets=> elemets.codigo!=codigo);
+    this.router.navigate(['/']);
+  }
+  /*en proceso
+  actuzalizarDatos(codigo:string){
+    //this.dataservices.listaProductos[0].descripcion= String( this.productoEncontrado[0].descripcion='hola');
+    //encontramos el indice
+    this.indice=this.dataservices.listaProductos.findIndex(producto=> producto.codigo===codigo);
+    //actualizamos los datos
+    
+    //lo enviamos al dataservice
+    this.dataservices.listaProductos[this.indice].descripcion
+  }*/
 }

@@ -1,0 +1,11 @@
+.div__img{
+    width: 50%;
+    margin: auto;
+}
+.img__notfound{
+    width:100%;
+}
+.btn__regresar{
+    background-color: #150050;
+    color: #fff !important;
+}

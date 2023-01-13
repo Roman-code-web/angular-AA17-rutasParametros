@@ -1,30 +1,38 @@
-<div class="container py-5">
-    <div class="container my-5">
-        <table class="table">
-            <thead class="bg-warning">
+<div class="container-fluid py-5 px-0">
+    <h2 class="text-center fs-1">{{titulotabla}}</h2>
+    <div class="container mt-5 mb-3 px-0 overflow-auto ">
+        <table class="table ">
+            <thead class="bg-primary text-center">
               <tr>
                 <th scope="col">N°</th>
                 <th scope="col">ID</th>
+                <th scope="col">CODIGO</th>
                 <th scope="col">DESCRIPCION</th>
-                <th scope="col">PRECIO DE COMPRA</th>
-                <th scope="col">PRECIO DE VENTA</th>
+                <th scope="col">PRECIO COMPRA</th>
+                <th scope="col">PRECIO VENTA</th>
                 <th scope="col">GANANCIA</th>
                 <th scope="col">EXISTENCIA</th>
                 <th scope="col">EDITAR</th>
+                <th scope="col">ELIMINAR</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody class="text-center">
               <tr *ngFor="let producto of dataservices.listaProductos, index as i">
                 <td >{{i+1}}</td>
                 <td>{{producto.id}}</td>
-                <td>{{producto.descripcion}}</td>
+                <td>{{producto.codigo}}</td>
+                <td>{{producto.descripcion | uppercase}}</td>
                 <td>{{producto.preciocompra}}</td>
                 <td>{{producto.precioventa}}</td>
                 <td>{{producto.ganancia}}</td>
                 <td>{{producto.existencia}}</td>
-                <td><button  class="btn btn-info" (click)="getProductos(producto.id)" ><i class="fa-solid fa-pen-to-square"></i></button></td>
+                <td><button  class="text-light btn btn-info" (click)="getProductos(producto.codigo)" ><i class="fa-solid fa-pen-to-square"></i></button></td>
+                <td><button  class="text-light btn btn-danger" (click)="eliminarProducto(producto.codigo)" ><i class="fa-solid fa-trash-can"></i></button></td>
               </tr>
             </tbody>
           </table>
     </div>
+    <div class="container d-flex gap-3">
+        <p class="fw-bold" >Total de registros:</p> <span>{{dataservices.listaProductos.length}}</span> 
+     </div>
 </div>
